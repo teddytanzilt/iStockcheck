@@ -11,6 +11,10 @@ namespace com.andrewbennet.istockcheck {
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow {
+		private List<CheckBox> Checkboxes = new List<CheckBox>() {
+			new CheckBox() {Text = "test"}
+		};
+
 		public MainWindow() {
 			InitializeComponent();
 			WindowMessageLabel.Content = "Checking iPhone stock";

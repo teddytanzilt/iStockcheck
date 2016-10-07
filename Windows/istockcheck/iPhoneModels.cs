@@ -38,48 +38,62 @@ namespace com.andrewbennet.istockcheck {
 
 	    public string ToIdentifier() => $"MN{ModelIdentifiers[(int)PhoneSize + (int)Colour + (int)StorageSize]}2B/A";
 
-        public string ToDisplayName() {
-            StringBuilder displayName = new StringBuilder();
-            switch(PhoneSize) {
-                case PhoneSize.iPhone7:
-                    displayName.Append("iPhone 7 ");
-                    break;
-                case PhoneSize.iPhone7Plus:
-                    displayName.Append("iPhone 7 Plus ");
-                    break;
-            }
-            switch(Colour) {
-                case Colour.JetBlack:
-                    displayName.Append("Jet Black, ");
-                    break;
-                case Colour.Black:
-                    displayName.Append("Black, ");
-                    break;
-                case Colour.Silver:
-                    displayName.Append("Silver, ");
-                    break;
-                case Colour.Gold:
-                    displayName.Append("Gold, ");
-                    break;
-                case Colour.RoseGold:
-                    displayName.Append("Rose Gold, ");
-                    break;
-            }
-            switch(StorageSize) {
-                case StorageSize.Small:
-                    displayName.Append("32GB");
-                    break;
-                case StorageSize.Medium:
-                    displayName.Append("128GB");
-                    break;
-                case StorageSize.Large:
-                    displayName.Append("256GB");
-                    break;
-            }
-            return displayName.ToString();
-        }
+	    public string DisplayName {
+		    get {
+			    StringBuilder displayName = new StringBuilder();
+			    switch(PhoneSize) {
+				    case PhoneSize.iPhone7:
+					    displayName.Append("iPhone 7 ");
+					    break;
+				    case PhoneSize.iPhone7Plus:
+					    displayName.Append("iPhone 7 Plus ");
+					    break;
+			    }
+			    switch(Colour) {
+				    case Colour.JetBlack:
+					    displayName.Append("Jet Black, ");
+					    break;
+				    case Colour.Black:
+					    displayName.Append("Black, ");
+					    break;
+				    case Colour.Silver:
+					    displayName.Append("Silver, ");
+					    break;
+				    case Colour.Gold:
+					    displayName.Append("Gold, ");
+					    break;
+				    case Colour.RoseGold:
+					    displayName.Append("Rose Gold, ");
+					    break;
+			    }
+			    switch(StorageSize) {
+				    case StorageSize.Small:
+					    displayName.Append("32GB");
+					    break;
+				    case StorageSize.Medium:
+					    displayName.Append("128GB");
+					    break;
+				    case StorageSize.Large:
+					    displayName.Append("256GB");
+					    break;
+			    }
+			    return displayName.ToString();
+		    }
+	    }
 
-        public static IEnumerable<IphoneModel> GetModels(IEnumerable<PhoneSize> iphoneSizes, IEnumerable<StorageSize> sizes, IEnumerable<Colour> colours) {
+	    public static IEnumerable<IphoneModel> GetAll() {
+		    foreach(PhoneSize iphoneSize in EnumExtensions.GetValues<PhoneSize>()) {
+			    foreach(StorageSize size in EnumExtensions.GetValues<StorageSize>()) {
+				    foreach(Colour colour in EnumExtensions.GetValues<Colour>()) {
+					    if(colour != Colour.JetBlack || size != StorageSize.Small) {
+						    yield return new IphoneModel(iphoneSize, size, colour);
+					    }
+				    }
+			    }
+		    }
+	    }
+
+	    public static IEnumerable<IphoneModel> GetModels(IEnumerable<PhoneSize> iphoneSizes, IEnumerable<StorageSize> sizes, IEnumerable<Colour> colours) {
             foreach(var iphoneSize in iphoneSizes) {
                 foreach(var size in sizes) {
                     foreach(var colour in colours) {

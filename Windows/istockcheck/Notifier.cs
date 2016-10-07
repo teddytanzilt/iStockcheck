@@ -38,7 +38,7 @@ namespace com.andrewbennet.istockcheck {
 				if(_enableWindowsAlerts) {
 					StringBuilder messageBuilder = new StringBuilder();
 					foreach(IphoneModel model in stock.Keys) {
-						messageBuilder.AppendLine($"{model.ToDisplayName()} available at {string.Join(", ", stock[model])}.");
+						messageBuilder.AppendLine($"{model.DisplayName} available at {string.Join(", ", stock[model])}.");
 					}
 					string message = messageBuilder.ToString();
 					MessageBox.Show(message, $"Stock found at {timeOfCheck}!", MessageBoxButton.OK, MessageBoxImage.Exclamation,
@@ -46,12 +46,12 @@ namespace com.andrewbennet.istockcheck {
 				}
 				if(_pushbulletToken != null) {
 					foreach(IphoneModel model in stock.Keys) {
-						await SendPushbullet($"{model.ToDisplayName()} available at {string.Join(", ", stock[model])}.", "");
+						await SendPushbullet($"{model.DisplayName} available at {string.Join(", ", stock[model])}.", "");
 					}
 				}
 				if(_telegramBotId != null && _telegramChatId != null) {
 					foreach(IphoneModel model in stock.Keys) {
-						await SendTelegram($"{model.ToDisplayName()} available at {string.Join(", ", stock[model])}.");
+						await SendTelegram($"{model.DisplayName} available at {string.Join(", ", stock[model])}.");
 					}
 				}
 			}

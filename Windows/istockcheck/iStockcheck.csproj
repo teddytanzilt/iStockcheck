@@ -65,13 +65,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppleStore.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="iPhoneModels.cs" />
     <Compile Include="StockChecker.cs" />
     <Compile Include="Notifier.cs" />
+    <Compile Include="Views\AppleStoresControl.xaml.cs">
+      <DependentUpon>AppleStoresControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NotificationsControl.xaml.cs">
+      <DependentUpon>NotificationsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\iPhoneModelsControl.xaml.cs">
       <DependentUpon>iPhoneModelsControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AppleStoresControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NotificationsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

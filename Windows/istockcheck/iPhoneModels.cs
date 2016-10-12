@@ -81,19 +81,7 @@ namespace com.andrewbennet.istockcheck {
 		    }
 	    }
 
-	    public static IEnumerable<IphoneModel> GetAll() {
-		    foreach(PhoneSize iphoneSize in EnumExtensions.GetValues<PhoneSize>()) {
-			    foreach(StorageSize size in EnumExtensions.GetValues<StorageSize>()) {
-				    foreach(Colour colour in EnumExtensions.GetValues<Colour>()) {
-					    if(colour != Colour.JetBlack || size != StorageSize.Small) {
-						    yield return new IphoneModel(iphoneSize, size, colour);
-					    }
-				    }
-			    }
-		    }
-	    }
-
-	    public static IEnumerable<IphoneModel> GetModels(IEnumerable<PhoneSize> iphoneSizes, IEnumerable<StorageSize> sizes, IEnumerable<Colour> colours) {
+		public static IEnumerable<IphoneModel> GetModels(IEnumerable<PhoneSize> iphoneSizes, IEnumerable<StorageSize> sizes, IEnumerable<Colour> colours) {
             foreach(var iphoneSize in iphoneSizes) {
                 foreach(var size in sizes) {
                     foreach(var colour in colours) {

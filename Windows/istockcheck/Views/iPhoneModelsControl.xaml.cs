@@ -1,19 +1,28 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows.Controls;
 
 namespace com.andrewbennet.istockcheck.Views {
 	/// <summary>
 	/// Interaction logic for iPhoneModelsControl.xaml
 	/// </summary>
 	public partial class iPhoneModelsControl {
-		private StackPanel mStackPanel = new StackPanel();
-
-		public ObservableCollection<IphoneModel> AllModels { get; set; }
-
+		
 		public iPhoneModelsControl() {
 			InitializeComponent();
-			CheckboxList.ItemsSource = IphoneModel.GetAll();
+			
+			List<IphoneModel> iPhone7 = new List<IphoneModel>();
+			List<IphoneModel> iPhone7Plus = new List<IphoneModel>();
+
+			foreach(Colour colour in EnumExtensions.GetValues<Colour>()) {
+				foreach(StorageSize size in EnumExtensions.GetValues<StorageSize>()) {
+					if(colour != Colour.JetBlack || size != StorageSize.Small) {
+						iPhone7.Add(new IphoneModel(PhoneSize.iPhone7, size, colour));
+						iPhone7Plus.Add(new IphoneModel(PhoneSize.iPhone7Plus, size, colour));
+					}
+				}
+			}
+
+			LeftCheckboxList.ItemsSource = iPhone7;
+			RightCheckboxList.ItemsSource = iPhone7Plus;
 		}
 	}
 }

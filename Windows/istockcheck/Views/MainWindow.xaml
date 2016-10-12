@@ -1,4 +1,4 @@
-﻿<Window x:Class="com.andrewbennet.istockcheck.MainWindow"
+﻿<Window x:Class="com.andrewbennet.istockcheck.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -20,6 +20,5 @@
 				<views:NotificationsControl Margin="5,5,5,5"/>
 			</TabItem>
 		</TabControl>
-		<Label Name="WindowMessageLabel" DockPanel.Dock="Bottom" Content="Checking for stock..."/>
 	</StackPanel>
 </Window>

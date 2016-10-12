@@ -6,18 +6,14 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Threading;
 
-namespace com.andrewbennet.istockcheck {
+namespace com.andrewbennet.istockcheck.Views {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow {
-		private List<CheckBox> Checkboxes = new List<CheckBox>() {
-			new CheckBox() {Text = "test"}
-		};
-
+		
 		public MainWindow() {
 			InitializeComponent();
-			WindowMessageLabel.Content = "Checking iPhone stock";
 
 			// Restoration from minimisation
 			NotifyIcon ni = new NotifyIcon {
@@ -49,7 +45,6 @@ namespace com.andrewbennet.istockcheck {
 				_sleepTime = int.Parse(ConfigurationManager.AppSettings["sleeptime"]);
 			}
 			catch(Exception) {
-				WindowMessageLabel.Content = "Config file is invalid. Please fix and restart application.";
 				return;
 			}
 
@@ -65,20 +60,20 @@ namespace com.andrewbennet.istockcheck {
 				 stock = await _stockChecker.CheckForStockAsync();
 			}
 			catch(AppleConnectivityException) {
-				WindowMessageLabel.Content = $"Apple connectivity issue at {now.ToLongTimeString()}";
+				//$"Apple connectivity issue at {now.ToLongTimeString()}";
 				return;
 			}
 			catch(AppleFormatException) {
-				WindowMessageLabel.Content = $"Unexpected Apple response issue at {now.ToLongTimeString()}";
+				//$"Unexpected Apple response issue at {now.ToLongTimeString()}";
 				return;
 			}
 
 			try {
 				_notifier.Notify(now, stock);
-				WindowMessageLabel.Content = $"Last stock check at {now.ToLongTimeString()}";
+				//$"Last stock check at {now.ToLongTimeString()}";
 			}
 			catch {
-				WindowMessageLabel.Content = $"Error sending notification at {now.ToLongTimeString()}";
+				//$"Error sending notification at {now.ToLongTimeString()}";
 			}
 			
 		}

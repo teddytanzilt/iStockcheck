@@ -34,7 +34,7 @@
 			<ListView Name="RightCheckboxList" ScrollViewer.VerticalScrollBarVisibility="Disabled" BorderThickness="0">
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<CheckBox Content="{Binding Value}" Focusable="False"/>
+						<CheckBox Uid="{Binding Key}" Content="{Binding Value}" Focusable="False" Checked="CheckedChanged" Unchecked="CheckedChanged"/>
 					</DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>
